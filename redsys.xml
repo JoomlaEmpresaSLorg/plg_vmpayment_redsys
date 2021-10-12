@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="2.5" type="plugin" group="vmpayment" method="upgrade">
+	<name>VMPAYMENT_REDSYS_JE</name>
+	<author>José A. Cidre Bardelás</author>
+	<authorEmail>info@joomlaempresa.es</authorEmail>
+	<authorUrl>http://www.joomlaempresa.es</authorUrl>
+	<creationDate>2019-10-09</creationDate>
+	<copyright>Copyright (C) 2012-2015 José A. Cidre Bardelás and Joomla Empresa - All Rights Reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+	<version>2.8.3</version>
+	<description>VMPAYMENT_REDSYS_DESC</description>
+	<files>
+		<filename plugin="redsys">redsys.php</filename>
+		<filename plugin="redsys">index.html</filename>
+		<folder>redsys</folder>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_vmpayment_redsys.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_vmpayment_redsys.sys.ini</language>
+		<language tag="gl-ES">gl-ES/gl-ES.plg_vmpayment_redsys.ini</language>
+		<language tag="gl-ES">gl-ES/gl-ES.plg_vmpayment_redsys.sys.ini</language>
+		<language tag="ca-ES">ca-ES/ca-ES.plg_vmpayment_redsys.ini</language>
+		<language tag="ca-ES">ca-ES/ca-ES.plg_vmpayment_redsys.sys.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_vmpayment_redsys.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_vmpayment_redsys.sys.ini</language>
+		<language tag="eu-ES">eu-ES/eu-ES.plg_vmpayment_redsys.ini</language>
+		<language tag="eu-ES">eu-ES/eu-ES.plg_vmpayment_redsys.sys.ini</language>
+	</languages>
+	<vmconfig>
+		<fields name="params" addfieldpath="/administrator/components/com_virtuemart/fields" />
+		<fields name="params" addfieldpath="/plugins/vmpayment/redsys/redsys/fields">
+			<fieldset name="basic">
+				<field type="vmtitle" default="VMPAYMENT_REDSYS_TITLE_INFO"/>
+				<field type="redsysinstructions" default="VMPAYMENT_REDSYS_DESC" />
+			</fieldset>
+			<fieldset name="template">
+				<field type="vmtitle" default="VMPAYMENT_REDSYS_TITLE_ASPECT"/>
+				<field name="payment_logos" type="vmfiles" multiple="true" scope="com_virtuemart" label="VMPAYMENT_REDSYS_LOGOS" description="VMPAYMENT_REDSYS_LOGOS_DET" directory="/images/stories/virtuemart/payment" default="default" hide_default="1" hide_none="1" stripext="0" exclude="^_|html$" />
+			</fieldset>
+			<fieldset name="payment">
+				<field type="vmtitle" default="VMPAYMENT_REDSYS_TITLE_PAYMENT"/>
+		    	<field name="redsys_pos_payment_type" type="list" default="A" label="VMPAYMENT_REDSYS_POS_PAYMENT_TYPE" description="VMPAYMENT_REDSYS_POS_PAYMENT_TYPE_DET">
+      <option value="A">VMPAYMENT_REDSYS_ALL</option>
+      <option value="C">VMPAYMENT_REDSYS_CARD</option>
+      <option value="O">VMPAYMENT_REDSYS_IUPAY</option>
+      <option value="T">VMPAYMENT_REDSYS_CARD_IUPAY</option>
+    			</field>
+				<field type="text" name="redsys_tpv_url" size="50" class="required" label="VMPAYMENT_REDSYS_URL_TPVV" default="" description="VMPAYMENT_REDSYS_URL_TPVV_DET" />
+				<field type="text" name="redsys_nome_loja" size="30" label="VMPAYMENT_REDSYS_NOME_LOJA" default="" description="VMPAYMENT_REDSYS_NOME_LOJA_DET" />
+				<field type="text" name="redsys_descricom_produtos" size="30" label="VMPAYMENT_REDSYS_DESCRICOM_PRODUTOS" default="" description="VMPAYMENT_REDSYS_DESCRICOM_PRODUTOS_DET" />
+				<field type="text" name="redsys_codigo_loja" size="10" label="VMPAYMENT_REDSYS_CODIGO_LOJA" default="" description="VMPAYMENT_REDSYS_CODIGO_LOJA_DET" />
+				<field type="redsyschave" name="redsys_chave" size="20" label="VMPAYMENT_REDSYS_CHAVE" default="" description="VMPAYMENT_REDSYS_CHAVE_DET" />
+				<field type="text" name="redsys_terminal" size="4" label="VMPAYMENT_REDSYS_TERMINAL" default="" description="VMPAYMENT_REDSYS_TERMINAL_DET" />
+				<field type="text" name="redsys_divisa" size="4" label="VMPAYMENT_REDSYS_DIVISA" default="978" description="VMPAYMENT_REDSYS_DIVISA_DET" />
+				<field type="text" name="redsys_tipo_operacom" size="2" label="VMPAYMENT_REDSYS_TIPO_OPERACOM" default="0" description="VMPAYMENT_REDSYS_TIPO_OPERACOM_DET" />
+				<field type="list" name="redsys_idioma" size="4" label="VMPAYMENT_REDSYS_IDIOMA" default="0" description="VMPAYMENT_REDSYS_IDIOMA_DET">
+					<option value="0">VMPAYMENT_REDSYS_UNDEFINED</option>
+					<option value="AUTO">VMPAYMENT_REDSYS_AUTO</option>
+					<option value="001">VMPAYMENT_REDSYS_SPANISH</option>
+					<option value="002">VMPAYMENT_REDSYS_ENGLISH</option>
+					<option value="003">VMPAYMENT_REDSYS_CATALAN</option>
+					<option value="004">VMPAYMENT_REDSYS_FRENCH</option>
+					<option value="005">VMPAYMENT_REDSYS_GERMAN</option>
+					<option value="006">VMPAYMENT_REDSYS_DUTCH</option>
+					<option value="007">VMPAYMENT_REDSYS_ITALIAN</option>
+					<option value="008">VMPAYMENT_REDSYS_SWEDISH</option>
+					<option value="009">VMPAYMENT_REDSYS_PORTUGUESE</option>
+					<option value="010">VMPAYMENT_REDSYS_VALENCIAN</option>
+					<option value="011">VMPAYMENT_REDSYS_POLISH</option>
+					<option value="012">VMPAYMENT_REDSYS_GALIZAN</option>
+					<option value="013">VMPAYMENT_REDSYS_BASQUE</option>
+				</field>
+				<field name="redsys_encaminhar" type="radio" default="0" label="VMPAYMENT_REDSYS_ENCAMINHAR" description="VMPAYMENT_REDSYS_ENCAMINHAR_DET">
+					<option value="0">VMPAYMENT_REDSYS_NO</option>
+					<option value="1">VMPAYMENT_REDSYS_YES</option>
+				</field>
+				<field name="redsys_itemid" type="text" size="12" label="VMPAYMENT_REDSYS_ITEMID" description="VMPAYMENT_REDSYS_ITEMID_DET" />
+				<field type="list" name="redsys_force_nossl" size="4" label="VMPAYMENT_REDSYS_FORCE_NOSSL" default="0" description="VMPAYMENT_REDSYS_FORCE_NOSSL_DET">
+					<option value="0">VMPAYMENT_REDSYS_NO</option>
+					<option value="1">VMPAYMENT_REDSYS_YES</option>
+				</field>
+			</fieldset>
+			<fieldset name="restrictions">
+				<field type="vmtitle" default="VMPAYMENT_REDSYS_TITLE_RESTRICTIONS"/>
+				<field name="payment_currency" type="vmacceptedcurrency" default="" label="VMPAYMENT_REDSYS_CURRENCY" description="VMPAYMENT_REDSYS_CURRENCY_DET" />
+				<field name="countries" multiple="true" type="vmcountries" scope="com_virtuemart" default="" label="VMPAYMENT_REDSYS_COUNTRIES" description="VMPAYMENT_REDSYS_COUNTRIES_DET" />
+				<field name="min_amount" type="text" label="VMPAYMENT_REDSYS_MIN_AMOUNT" description="VMPAYMENT_REDSYS_MIN_AMOUNT_EXPLAIN" />
+				<field name="max_amount" type="text" label="VMPAYMENT_REDSYS_MAX_AMOUNT" description="VMPAYMENT_REDSYS_MAX_AMOUNT_EXPLAIN" />
+            </fieldset>
+            <fieldset name="fee">
+				<field type="vmtitle" default="VMPAYMENT_REDSYS_TITLE_FEES"/>
+				<field name="cost_per_transaction" type="text" label="VMPAYMENT_REDSYS_COST_PER_TRANSACTION" description="VMPAYMENT_REDSYS_COST_PER_TRANSACTION_EXPLAIN" />
+				<field name="cost_percent_total" type="text" label="VMPAYMENT_REDSYS_COST_PERCENT_TOTAL" description="VMPAYMENT_REDSYS_COST_PERCENT_TOTAL_EXPLAIN" />
+				<field name="tax_id" type="vmtaxes" scope="com_virtuemart" label="VMPAYMENT_REDSYS_TAX" description="VMPAYMENT_REDSYS_TAX_EXPLAIN" />
+			</fieldset>
+			<fieldset name="orderstatus">
+				<field type="vmtitle" default="VMPAYMENT_REDSYS_TITLE_ORDERS"/>
+				<field name="status_pending" type="vmorderstate" scope="com_virtuemart" default="P" label="VMPAYMENT_REDSYS_STATUS_PENDING" description="VMPAYMENT_REDSYS_STATUS_PENDING_EXPLAIN" />
+				<field name="status_success" type="vmorderstate" scope="com_virtuemart" default="C" label="VMPAYMENT_REDSYS_STATUS_SUCCESS" description="VMPAYMENT_REDSYS_STATUS_SUCCESS_EXPLAIN" />
+				<field name="status_canceled" type="vmorderstate" scope="com_virtuemart" default="X" label="VMPAYMENT_REDSYS_STATUS_FAILED" description="VMPAYMENT_REDSYS_STATUS_FAILED_EXPLAIN" />
+			</fieldset>
+			<fieldset name="design">
+				<field type="vmtitle" default="VMPAYMENT_REDSYS_TITLE_DESIGN"/>
+				<field name="buttonimage" type="media" label="VMPAYMENT_REDSYS_SELECT_BUTTON_IMAGE"  description="VMPAYMENT_REDSYS_SELECT_BUTTON_IMAGE_EXPLAIN" directory="stories" preview="false" />
+				<field type="radio" name="redsys_template_files" size="4" label="VMPAYMENT_REDSYS_USE_TEMPLATE_FILES" default="0" description="VMPAYMENT_REDSYS_USE_TEMPLATE_FILES_EXPLAIN">
+					<option value="0">VMPAYMENT_REDSYS_NO</option>
+					<option value="1">VMPAYMENT_REDSYS_YES</option>
+				</field>
+				<field type="redsysinstructions" default="VMPAYMENT_REDSYS_ALLOWED_TAGS" />
+				<field name="redsys_checkout_page" type="editor" default="&lt;p style=&quot;text-align: center;&quot; &gt;{TRANS_POS_TEXT}&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot; &gt;{TRANS_ORDER}: {ORDER_NUMBER}&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot; &gt;{TRANS_AMOUNT}: {AMOUNT}&lt;/p&gt;&lt;div style=&quot;text-align: center;&quot; &gt;{REDSYS_FORM}&lt;/div&gt;" label="VMPAYMENT_REDSYS_CHECKOUT_PAGE" description="VMPAYMENT_REDSYS_CHECKOUT_PAGE_EXPLAIN" rows="5" cols="80" filter="safehtml" buttons="true" hide="readmore,pagebreak"/>
+				<field name="redsys_ok_page" type="editor" default="&lt;p&gt;&lt;img src=&quot;plugins/vmpayment/redsys/redsys/correto.png&quot; alt=&quot;img&quot; border=&quot;0&quot; /&gt;&lt;/p&gt;	&lt;h1&gt;{TRANS_OK_TITLE}&lt;/h1&gt;&lt;p&gt;{TRANS_OK_TEXT}&lt;p&gt;{ORDER_DETAILS_LINK}&lt;/p&gt;" label="VMPAYMENT_REDSYS_OK_PAGE" description="VMPAYMENT_REDSYS_OK_PAGE_EXPLAIN" rows="5" cols="80" filter="safehtml" buttons="true" hide="readmore,pagebreak"/>
+				<field name="redsys_ko_page" type="editor" default="&lt;p&gt;&lt;img src=&quot;plugins/vmpayment/redsys/redsys/incorreto.png&quot; alt=&quot;img&quot; border=&quot;0&quot; /&gt;&lt;/p&gt;	&lt;h1&gt;{TRANS_KO_TITLE}&lt;/h1&gt;&lt;p&gt;{TRANS_KO_TEXT}&lt;/p&gt;&lt;p style=&quot;color: red;&quot;&gt;{RESPONSE_ERROR_TEXT}&lt;/p&gt;&lt;p&gt;{ORDER_DETAILS_LINK}&lt;/p&gt;" label="VMPAYMENT_REDSYS_KO_PAGE" description="VMPAYMENT_REDSYS_KO_PAGE_EXPLAIN" rows="5" cols="80" filter="safehtml" buttons="true" hide="readmore,pagebreak"/>
+			</fieldset>
+			<fieldset name="debug">
+				<field type="vmtitle" default="VMPAYMENT_REDSYS_TITLE_DEBUG"/>
+				<field name="debug" type="radio" default="0" label="VMPAYMENT_REDSYS_DEBUG" description="VMPAYMENT_REDSYS_DEBUG_DET">
+					<option value="0">VMPAYMENT_REDSYS_NO</option>
+					<option value="1">VMPAYMENT_REDSYS_YES</option>
+				</field>
+				<field name="mail_debug" type="radio" default="0" label="VMPAYMENT_REDSYS_MAIL_DEBUG" description="VMPAYMENT_REDSYS_MAIL_DEBUG_DET">
+					<option value="0">VMPAYMENT_REDSYS_NO</option>
+					<option value="1">VMPAYMENT_REDSYS_YES</option>
+				</field>
+				<field name="mail_debug_address" type="text" label="VMPAYMENT_REDSYS_MAIL_DEBUG_ADDRESS" description="VMPAYMENT_REDSYS_MAIL_DEBUG_ADDRESS_DET" />
+			</fieldset>
+		</fields>
+	</vmconfig>
+</extension>
